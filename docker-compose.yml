@@ -1,0 +1,33 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    volumes:
+      - .:/var/www
+      - ./node_modules:/var/www/node_modules
+    ports:
+      - "8000:8000"
+      - "5173:5173"
+    depends_on:
+      - db
+    env_file:
+      - .env
+    command: ./docker-entrypoint.sh
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: laravel
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: laravel
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7
+    container_name: redis_cache
+    ports:
+      - "6379:6379"
