@@ -4,10 +4,10 @@ import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
     server: {
-        host: '0.0.0.0', // Permite que o Vite seja acessado de fora do container
-        port: 5173,      // Porta do Vite
+        host: '0.0.0.0',
+        port: 5173,
         hmr: {
-            host: 'localhost', // Certifique-se de que aponta para o host local
+            host: 'localhost',
         },
     },
     plugins: [
